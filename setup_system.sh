@@ -58,3 +58,5 @@ rm -rf ~/.config/nvim/.git
 
 # Install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# zed editor
+brew install --cask zed

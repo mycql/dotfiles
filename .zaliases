@@ -1,3 +1,4 @@
 alias vim=nvim
 alias lg=lazygit
+alias zed="open -a /Applications/Zed.app -n"
 
