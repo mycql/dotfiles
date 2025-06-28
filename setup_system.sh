@@ -60,3 +60,11 @@ rm -rf ~/.config/nvim/.git
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # zed editor
 brew install --cask zed
+# install bun
+curl -fsSL https://bun.sh/install | bash
+brew install helix
+brew install rust-analyzer
+
+# node version manager
+brew install fnm
+fnm install 22
