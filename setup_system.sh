@@ -43,6 +43,7 @@ source <(fzf --zsh)
 echo 'source <(fzf --zsh)' >>~/.zshrc
 brew install ripgrep
 brew install fd
+brew install wget
 
 # Back up files for nvim
 # required
@@ -73,6 +74,7 @@ fnm install 22
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 sdk install java
+sdk intsall maven
 
 # to unininstall
 function sdkman_uninstall() {
