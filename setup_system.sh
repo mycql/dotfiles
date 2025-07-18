@@ -68,3 +68,14 @@ brew install rust-analyzer
 # node version manager
 brew install fnm
 fnm install 22
+
+# sdk man for jvm ecossystem
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+sdk install java
+
+# to unininstall
+function sdkman_uninstall() {
+  tar zcvf ~/sdkman-backup_$(date +%F-%kh%M).tar.gz -C ~/ .sdkman
+  rm -rf ~/.sdkman
+}
