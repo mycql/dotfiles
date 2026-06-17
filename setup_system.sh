@@ -53,8 +53,8 @@ rm -rf ~/.config/nvim/.git
 mkdir -p ~/projects
 DOTFILES_DIR=~/projects/dotfiles
 git clone https://github.com/mycql/dotfiles.git $DOTFILES_DIR
-ln -s $DOTFILES_DIR/.zshrc ~/.zshrc
-ln -s $DOTFILES_DIR/.config ~/.config
-ln -s $DOTFILES_DIR/.zshenv ~/.zshenv
-ln -s $DOTFILES_DIR/.zaliases ~/.zaliases
+ln -sf $DOTFILES_DIR/.zshrc ~/.zshrc
+ln -sf $DOTFILES_DIR/.config ~/.config
+ln -sf $DOTFILES_DIR/.zshenv ~/.zshenv
+ln -sf $DOTFILES_DIR/.zaliases ~/.zaliases
 
