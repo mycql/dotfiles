@@ -1,9 +1,7 @@
-# Install Homewbrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-# Set homewbrew in shell
-echo >>$HOME/.zprofile
-echo 'eval "$(/usr/local/bin/brew shellenv)"' >>$HOME/.zprofile
-eval "$(/usr/local/bin/brew shellenv)"
+#install zsh
+sudo apt install zsh
+chsh -s zsh
+zsh
 
 # Install StarShip
 curl -sS https://starship.rs/install.sh | sh
@@ -15,13 +13,10 @@ mkdir .config
 starship preset gruvbox-rainbow -o ~/.config/starship.toml
 
 # Further shell customizations
-brew install zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 echo >>~/.zshrc
-echo 'source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-brew install --cask font-jetbrains-mono
-mkdir -p ~/.config/ghostty
-echo 'font-family = "JetBrains Mono"' >>~/.config/ghostty/config
+echo 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Custom scripts
 mkdir scripts
@@ -30,21 +25,19 @@ curl https://raw.githubusercontent.com/rupa/z/refs/heads/master/z.sh -o ~/script
 chmod +x ~/scripts/z.sh
 echo 'source ~/scripts/z.sh' >>~/.zshrc
 source ~/scripts/z.sh
+# micromamba
+"${SHELL}" <(curl -L micro.mamba.pm/install.sh)
+micromamba create -n dev
+micromamba activate dev
+echo 'micromamba activate dev' >> ~/.zshrc
+micromamba install python uv nvim lazygit fzf ripgrep fd wget rust rust-analyzer
+sudo apt install ocl-icd-opencl-dev
 
-# Install Lazyvim
-brew install neovim
-brew install jesseduffield/lazygit/lazygit
-brew install fzf
 touch ~/.zaliases
 echo 'vim=nvim' >>~/.zaliases
 echo 'lg=lazygit' >>~/.zaliases
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
-echo 'source <(fzf --zsh)' >>~/.zshrc
-brew install ripgrep
-brew install fd
-brew install wget
-
+echo >>~/.zshrc
+echo 'source ~/.zaliases' >>~/.zshrc
 # Back up files for nvim
 # required
 mv ~/.config/nvim{,.bak}
@@ -57,27 +50,11 @@ mv ~/.cache/nvim{,.bak}
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 
-# Install rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-# zed editor
-brew install --cask zed
-# install bun
-curl -fsSL https://bun.sh/install | bash
-brew install helix
-brew install rust-analyzer
+mkdir -p ~/projects
+DOTFILES_DIR=~/projects/dotfiles
+git clone https://github.com/mycql/dotfiles.git $DOTFILES_DIR
+ln -s $DOTFILES_DIR/.zshrc ~/.zshrc
+ln -s $DOTFILES_DIR/.config ~/.config
+ln -s $DOTFILES_DIR/.zshenv ~/.zshenv
+ln -s $DOTFILES_DIR/.zaliases ~/.zaliases
 
-# node version manager
-brew install fnm
-fnm install 22
-
-# sdk man for jvm ecossystem
-curl -s "https://get.sdkman.io" | bash
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-sdk install java
-sdk intsall maven
-
-# to unininstall
-function sdkman_uninstall() {
-  tar zcvf ~/sdkman-backup_$(date +%F-%kh%M).tar.gz -C ~/ .sdkman
-  rm -rf ~/.sdkman
-}
