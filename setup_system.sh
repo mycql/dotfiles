@@ -32,6 +32,10 @@ micromamba activate dev
 echo 'micromamba activate dev' >> ~/.zshrc
 micromamba install python uv nvim lazygit fzf ripgrep fd wget rust rust-analyzer
 sudo apt install ocl-icd-opencl-dev
+sudo apt install python3-pyaudio
+sudo apt-get install libasound-dev
+sudo apt install libpulse0
+sudo apt install pulseaudio pulseaudio-utils
 
 touch ~/.zaliases
 echo 'vim=nvim' >>~/.zaliases
